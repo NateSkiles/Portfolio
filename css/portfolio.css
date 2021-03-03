@@ -1,7 +1,21 @@
 /***** GENERAL STYLING *****/
+html {
+    scroll-behavior: smooth;
+}
+
 /*BODY*/
 body {
     margin: 0%;
+    opacity: 1; /* This and transition affect the page loading fade in effect */
+    transition: 3s opacity; /* This causes a 3 second fade in, you can change this time if you choose */
+	letter-spacing: .2vw;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+	font-size: 1.5vw;
+}
+
+body.fade-out {
+    opacity: .1; /*set the level f opacity at the start of page load*/
+    transition: none;
 }
 
 /* HEADING 1 ELEMENTS */
@@ -35,6 +49,11 @@ p {
     padding-right: 20px;
 }
 
+@media screen and (max-width: 600px) {
+    p {
+        text-align: center;
+    }
+}
 p:hover {
     transition: transform .5s;
     transform: scale(1.01);
@@ -82,12 +101,9 @@ img:hover {
     }
 }
 
-/* STYLING FOOTER ELEMENT */
-footer {
-    padding: 2%;
-    background-color: #e5e5e5;
-}
 /***** END GENERAL STYLING *****/
+
+
 
 /***** NAVBAR STYLING *****/
 
@@ -100,7 +116,10 @@ footer {
     z-index: 1;
     -webkit-animation: moveNav 3s;
     animation: moveNav 3s;
+    font-size: 1.5vw;
+    letter-spacing: .2vw;
 }
+
 
 /* moveNav AFFECT FOR NAVBAR */
 @keyframes moveNav {
@@ -113,7 +132,7 @@ footer {
     float: left;
     display: block;
     color: #e5e5e5;
-    padding: 14px 16px;
+    padding: .75vw 1vw;
     text-decoration: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 20px;
@@ -130,7 +149,7 @@ footer {
 
 @media screen and (max-width: 576px) {
     .navbar a{
-        width: 25%;
+        width: 20%;
         font-size: 12px;
     }
 }
@@ -139,6 +158,9 @@ footer {
     background-color: #e5e5e5;
     color: #14213d;
     font-weight: bold;
+    cursor: pointer;
+    -webkit-transition-duration: .5s;
+    transition-duration: .5s;
 }
 
 .navbar a.active {
@@ -147,15 +169,29 @@ footer {
 
 /***** END OF NAVBAR STYLING *****/
 
+
+
 /***** VIDEO STYLING *****/
 /* Formatting for background video */
 #typing_video {
-    position: absolute;
-    filter: grayscale(70%);
+    position: fixed;
+    filter: grayscale(50%);
+    bottom: 0;
     left: 0;
-    top:-200px;
+    top:0;
     min-width: 100%;
+    min-height: 100%;
     z-index: -1;
+    animation: zoominoutsinglefeatured 5s;
+}
+
+@keyframes zoominoutsinglefeatured {
+    0% {
+        transform: scale(1.5,1.5);
+    }
+    100% {
+        transform: scale(1,1);
+    }
 }
 
 /* SCREENS SMALLER THAN 576px WILL NOT DISPLAY BACKGROUND VIDEO */
@@ -170,7 +206,9 @@ footer {
     background: rgba(0, 0, 0, 0.5);
     color: #e5e5e5;
     width: 100%;
-    padding: 20px;
+    padding-top: .1vh;
+    padding-bottom: 1vh;
+    margin-top: 23%;
     position: relative;
     -webkit-animation: moveVideoText 5s;
     animation: moveVideoText 5s;
@@ -183,6 +221,134 @@ footer {
 }
 /***** END OF VIDEO STYLING *****/
 
+/***** SLIDESHOW *****/
+#slideshow_Background {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.mySlides {
+    display: none;
+}
+
+@-webkit-keyframes fade {
+    from {opacity: .4;}
+    to {opacity: 1};
+}
+
+@keyframes fade {
+    from{opacity: .4;}
+    to {opacity: 1;}
+}
+
+#slideshow_Container {
+    width: 39.5vw;
+    height: auto;
+    padding-top: 4%;
+    position: relative;
+    margin: auto;
+}
+
+@media screen and (max-width: 600px) {
+    #slideshow_Container {
+        bottom: 20vw;
+    }
+}
+
+.slide_Show_Images {
+    vertical-align: middle;
+    height: auto;
+    box-shadow: 0px 5px 10px 12px rgba(0, 0, 0, .75);
+    width: auto;
+}
+
+.Previous, .Next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 2vw;
+    margin-top: -0vw;
+    color: darkgray;
+    font-weight: bold;
+    font-size: 1.4vw;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    transition: 0.6s ease;
+}
+
+@media screen and (max-width: 600px) {
+    .Previous, .Next {
+        margin-top: 20vw;
+    }
+}
+
+.Next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.Previous:hover, .Next:hover {
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+}
+
+/* Slideshow text */
+.text {
+    color: white;
+    padding: .75vw;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-family: Perpetua, Rockwell Extra Bold;
+    letter-spacing: .1vw; 
+    font-size: 1.5vw;
+    background-color: rgba(0,0,0,0.75);
+    font-weight: bold;
+    border-radius: 7px 7px 7px 7px;
+}
+.slide_Number {
+    color: white;
+    position: absolute;
+    top: 0;
+    font-family: Perpetua, Rockwell Extra Bold;
+    letter-spacing: .1vw; 
+    font-size: 1.5vw;
+    font-weight: bold;
+    display: none;
+}
+
+.dot {
+    cursor: pointer;
+    height: 1vw;
+    width: 1vw;
+    margin: .25vw;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.active {
+    background-color: #14313d;
+}
+
+.dot:hover {
+    background-color: #fca311;
+}
+
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+/***** END SLIDESHOW *****/
+
+
+
 /***** TABLE STYLING *****/
 * {
     box-sizing: border-box;
@@ -191,9 +357,8 @@ footer {
 .column_1 {
     float: left;
     width: 50%;
-    padding: 10px;
-    padding-top: 1.9%;
-    height: 400px;
+    padding: 1.6%;
+    height: 448px;
     background-color: #e5e5e5;
 }
 
@@ -209,7 +374,7 @@ footer {
     width: 50%;
     padding: 10px;
     padding-top: 1.9%;
-    height: 400px;
+    height: 448px;
     background-color: #14313d;
 }
 
@@ -224,6 +389,9 @@ footer {
     clear: both;
 }
 /***** END OF TABLE STYLING *****/
+
+
+
 
 /***** CONTACT FORM STYLING *****/
 input[type=text] {
@@ -264,10 +432,103 @@ input[type=submit]:hover {
 }
 
 /* FORM ELEMENT */
-form {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 10px;
-    font-family: Arial, sans-serif;
-}
+/* Makes contact form button slide in from right on page load */
+@keyframes movePopup {
+    from {right: -40vw;}
+    to {bottom: 1.75vw;}
+  }
+  
+  /* Button used to open the contact form - fixed at the bottom of the page */
+  .Pop_Up_Button {
+    bottom: 1.75vw;
+    right: 1.75vw;
+    width: 25vw;  
+    background-color: white;
+    color: black;
+    border: solid;
+    cursor: pointer;
+    position: fixed;
+    -webkit-animation: movePopup 5s;
+    animation: movePopup 5s;
+  }
+  
+  /* The popup form */
+  .form-popup {
+    border: 3px solid black;
+    z-index: 8;
+    display: none;
+    position: fixed;
+    bottom: 6px;
+    right: 6px;
+  }
+  
+  .form-container {
+    max-width: 49vw;
+    padding: 9px;
+    background-color: white;
+  }
+  
+  .form-container input[type=text], .form-container input[type=password] {
+    width: 100%;
+    padding: .93vw;
+    margin: .6vw 0 .6vw 0;
+    border: none;
+    background: Gainsboro;
+    font-family: Helvetica, Avant Garde;
+    font-size: 1vw; 
+  }
+  
+  /* Submit button */
+  .form-container .btn {
+    background-color: white;
+    color: black;
+    border-color: black;
+    margin-bottom:1vh;
+  }
+  
+  /* Close button */
+  .form-container .cancel {
+    background-color: black;
+    color: white;
+    border-color: gray;
+  }
+  
+  button {
+    font-family: "Trebuchet MS", Optima; 
+    letter-spacing: .3vw; 
+    font-size: 1.5vw;
+    font-weight: bold;
+    padding: 1.5vw 1.5vw;
+    border-style: solid;
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Hover effect for buttons */
+  button:hover, .form-container .btn:hover{
+    color: white;
+    background-color: #fca311;
+    -webkit-transition-duration: 1s; 
+    transition-duration: 1s;
+    border-style: solid;
+    border-color: #14313d;
+  }
+
+  .form-container .cancel:hover{
+    color: white;
+    background-color: darkred;
+    -webkit-transition-duration: 1s; 
+    transition-duration: 1s;
+    border-style: solid;
+    border-color: black;
+  }	
+
 /***** END OF CONTACT FORM STYLING *****/
+
+
+/* STYLING FOOTER ELEMENT */
+footer {
+    padding: 2%;
+    background-color: #e5e5e5;
+}
