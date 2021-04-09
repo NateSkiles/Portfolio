@@ -16,9 +16,10 @@
         <!--NAVBAR-->
         <div class="navbar">
             <a class="active" href="#home">Home</a>
+            <a href="#slideshow">Slideshow</a>
             <a href="#about">About</a>
             <a href="#github">GitHub</a>
-            <a href="#contact">Contact</a>
+            <a onclick="openForm()" ondblclick="closeForm()">Contact</a>
         </div>
 
         <!--BREAKS TO ADD SPACE BETWEEN NAVBAR AND FIRST HEADING-->
@@ -28,7 +29,7 @@
         <!--BACKGROUND VIDEO-->
         <div id="home">
             <video autoplay muted loop id="typing_video">
-                <source src="./images/typingVid.mp4" type="video/mp4">
+                <source src="images/typingVid.mp4" type="video/mp4">
                     <!--FAIL TO RUN MESSAGE-->
                     Your browser does not support HTML5 video.
             </video>
@@ -49,7 +50,60 @@
                     <br>Thank you for stopping by and checking it out!
                 </p>
         </div>
-        
+        <!-- SLIDESHOW -->
+        <div id="slideshow">
+            <div id="slideshow_Background">
+                <div id="slideshow_Container">
+
+                    <div class="mySlides fade">
+                        <div class="slide_Number">1 / 6</div>
+                            <img class="slide_Show_Images" src="images/nate.png" style="width: 100%;">
+                                <div class="text">I'm available to assist you on your project!</div>
+                    </div>
+                    <div class="mySlides fade">
+                        <div class="slide_Number">2 / 6</div>
+                            <img class="slide_Show_Images" src="images/HTML_CSS_and_JavaScript.jpeg" style="width: 100%;">
+                                <div class="text">I'm available to assist you on your project!</div>
+                    </div>
+                    <div class="mySlides fade">
+                        <div class="slide_Number">3 / 6</div>
+                            <img class="slide_Show_Images" src="images/Python.png" style="width: 100%;">
+                                <div class="text">I'm available to assist you on your project!</div>
+                    </div>
+                    <div class="mySlides fade">
+                        <div class="slide_Number">4 / 6</div>
+                            <img class="slide_Show_Images" src="images/C_Sharp_and_Dot_NET.png" style="width: 100%;">
+                                <div class="text">I'm available to assist you on your project!</div>
+                    </div>
+                    <div class="mySlides fade">
+                        <div class="slide_Number">5 / 6</div>
+                            <img class="slide_Show_Images" src="images/SQL_and_Database.jpg" style="width: 100%;">
+                                <div class="text">I'm available to assist you on your project!</div>
+                    </div>
+                    <div class="mySlides fade">
+                        <div class="slide_Number">6 / 6</div>
+                            <img class="slide_Show_Images" src="images/Coding_1.jpg" style="width: 100%;">
+                                <div class="text">
+                                    <a onclick="openForm()" href="#Contact" style="color: white;">Contact me now!</a>
+                                </div>
+                    </div>
+
+                    <a class="Previous" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="Next" onclick="plusSlides(1)">&#10095;</a>
+                    
+                </div>
+            <br>
+
+                <div style="text-align: center">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                    <span class="dot" onclick="currentSlide(6)"></span>
+                </div>
+            </div>
+        </div>
         <!--ABOUT SECTION-->
         <div class="row" id="about">
             <!--LEFT COLUMN-->
@@ -69,41 +123,40 @@
 
         <!--GITHUB SECTION-->
         <div class="row" id="github">
-            <!--LEFT COLUMN-->
-            <div class="column_1">
+
+            <div class="column_1"><!--LEFT COLUMN-->
                 <h1>GitHub</h1>
                 <p> You can view my coding projects on my GitHub profile here:
                     <br>
                     <p class="center"><a href="https://github.com/NateSkiles" target="_blank">Nathan's GitHub</a></p>
                 </p>
             </div>
-            <!--Right Column-->
-            <div class="column_2">
+
+            <div class="column_2"><!--Right Column-->
                 <a href="https://github.com/NateSkiles" target="_blank"><img src="./images/githubPic.png" alt="GitHub Logo"></a>
             </div>
         </div>
 
         <!--CONTACT SECTION-->
-        <div class="row" id="contact">
-            <!--CONTACT IMAGE, LEFT COLUMN-->
-            <div class="column_2 column_tall">
-                <img src="./images/mail.png" alt="Contact Image">
-            </div>
-            <!--CONTACT FORM, RIGHT COLUMN-->
-            <div class="column_1 column_tall">
+        <div id="Contact"> 
+            <button onclick="openForm()" class="Pop_Up_Button"> CONTACT </button>
+              <div class="form-popup" id="myForm">
+                <form action="https://formspree.io/f/xwkwjnqb" method="POST" class="form-container"> <!-- Here we are using a free online service from https://formspree.io/ to send our contact form to an email address of our choosing - note: it will not run unless live on the internet, you have to push it to your online website first -->
                 <h1>Contact</h1>
-                <!--SPECIFIES HOW AND WHERE TO SEND FORM DATA-->
-                <form action="https://formspree.io/f/xwkwjnqb" method="POST">
-                    <label>Name</label>
-                        <input type="text" placeholder="Please enter your name here">
-                    <label>Email</label>
-                        <input type="text" id="email" name="email" placeholder="Please enter your email here">
-                    <label>Message</label>
-                        <input type="text" id="message" name="message" placeholder="Please write your message here">
-                        <input type="submit" value="SUBMIT">
+                    <label for="name"><b>Name</b></label>
+                      <input type="text" placeholder="Type your name here" name="name" required>
+                    <label for="phone"><b>Phone</b></label>
+                      <input type="text" placeholder="Enter your phone number here" name="phone">
+                    <label for="email"><b>Email</b></label>		
+                      <input type="text" placeholder="Type your email address here" name="email" required>
+                    <label for="message"><b>Message</b></label>
+                      <input type="text" placeholder="Type your message here" name="message">
+         
+            <button type="submit" class="btn">SUBMIT</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">CLOSE</button>
                 </form>
-            </div>
-        </div>
+              </div>
+          </div>
 
         <!--FOOTER SECTION-->
         <footer>
@@ -112,5 +165,6 @@
                 <br>
             </p>
         </footer>
+        <script src="JS/portfolio.js"></script>
     </body>
 </html>
