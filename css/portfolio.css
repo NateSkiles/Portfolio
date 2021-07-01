@@ -54,10 +54,6 @@ p {
         text-align: center;
     }
 }
-p:hover {
-    transition: transform .5s;
-    transform: scale(1.01);
-}
 
 .center {
     text-align: center;
@@ -155,8 +151,8 @@ img:hover {
 }
 
 .navbar a:hover {
-    background-color: #e5e5e5;
-    color: #14213d;
+    background-color: #14313d;
+    color: #fca311;
     font-weight: bold;
     cursor: pointer;
     -webkit-transition-duration: .5s;
@@ -363,8 +359,8 @@ img:hover {
 }
 
 /* CREATES TEXT OVERFLOW FOR SMALL VIEWPORTS */
-@media screen and (max-width: 576px) {
-    .column_1 {
+@media screen and (max-width: 1350px) {
+    .column_1 { display: block;
         overflow: auto;
     }
 }
@@ -529,6 +525,6 @@ input[type=submit]:hover {
 
 /* STYLING FOOTER ELEMENT */
 footer {
-    padding: 2%;
-    background-color: #e5e5e5;
+    padding: 2% 0;
+    background-color: #fca311;
 }
